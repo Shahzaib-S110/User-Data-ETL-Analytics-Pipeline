@@ -108,9 +108,7 @@ User-Data-ETL-Analytics-Pipeline/
 
 Example:
 
-```sql
+sql
 SELECT gender, COUNT(*)
 FROM users
 GROUP BY gender;
-
-## 📁 Project Structure
