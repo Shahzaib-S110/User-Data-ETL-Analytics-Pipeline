@@ -5,6 +5,8 @@ A complete end-to-end **Data Engineering & Analytics** project that extracts use
 This project demonstrates a production-style **ETL pipeline**, **relational database design**, **SQL-based OLAP analytics**, and **interactive business intelligence visualization**.
 
 ---
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/22da83c6-906d-40ec-a2d1-105ebfa331ca" />
+
 
 # 🚀 Project Overview
 
