@@ -61,28 +61,37 @@ The pipeline automates the complete data engineering workflow:
 ```text
 User-Data-ETL-Analytics-Pipeline/
 │
-├── src/
-│   ├── extract.py          # Fetch data from DummyJSON API
-│   ├── transform.py        # Data cleaning & feature engineering
-│   ├── load.py             # Load transformed data into PostgreSQL
-│   ├── schema.py           # Database schema definitions
-│   ├── database.py         # Database connection handler
-│   └── main.py             # ETL pipeline entry point
-│
 ├── dashboard/
-│   ├── app.py              # Streamlit application
-│   ├── database.py         # Dashboard database connection
-│   ├── queries.py          # SQL analytics queries
-│   ├── charts.py           # Plotly visualizations
-│   └── pages/              # Multi-page dashboard
+│   ├── app.py
+│   ├── database.py
+│   ├── queries.py
+│   ├── charts.py
+│   ├── utils.py
+│   │
+│   └── pages/
+│       ├── 1_Home.py
+│       ├── 2_User_Analytics.py
+│       ├── 3_Geographics.py
+│       ├── 4_Company.py
+│       ├── 5_Finance.py
+│       └── 6_Raw_Data.py
+│
+├── src/
+│   ├── data/
+│   │    │__raw/
+│   │    │__user.json
+│   │
+│   ├── plots/
+│   │
+│   ├── config.py
+│   ├── main.py
+│   ├── extract.py
+│   ├── transform.py
+│   ├── load.py
+│   ├── analysis.py
+│   └── database.py
 │
 ├── sql/
-│   ├── create_tables.sql
-│   └── analytics_queries.sql
-│
-├── data/
-│   ├── raw/
-│   └── processed/
 │
 ├── requirements.txt
 └── README.md
