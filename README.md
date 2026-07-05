@@ -1,158 +1,350 @@
-# 📊 User Data ETL & Analytics Pipeline (PostgreSQL + Streamlit)
+# 📊 User Data ETL & Analytics Pipeline
 
-A complete end-to-end Data Engineering & Analytics project that extracts user data from an API, transforms it using Python, loads it into PostgreSQL, and visualizes insights through an interactive Streamlit dashboard.
+A complete end-to-end **Data Engineering & Analytics** project that extracts user data from the **DummyJSON API**, transforms and cleans it using **Python**, loads it into **PostgreSQL**, and presents business insights through an interactive **Streamlit** dashboard.
 
-This project demonstrates a real-world ETL pipeline + OLAP analytics system + BI dashboard.
+This project demonstrates a production-style **ETL pipeline**, **relational database design**, **SQL-based OLAP analytics**, and **interactive business intelligence visualization**.
 
-## 🚀 Overview
+---
 
-This system performs a full data workflow:
+# 🚀 Project Overview
 
-🔄 Extract data from DummyJSON API
-🧹 Transform & clean using Pandas
-🗄️ Load structured data into PostgreSQL
-📊 Run SQL-based analytical queries (OLAP)
-📈 Visualize insights using Streamlit + Plotly
+The pipeline automates the complete data engineering workflow:
 
-## 🏗️ Architecture
-DummyJSON API
-      ↓
-Extract Layer (Python Requests)
-      ↓
-Transform Layer (Pandas)
-      ↓
-Load Layer (PostgreSQL)
-      ↓
-SQL Analytics (OLAP Queries)
-      ↓
-Streamlit Dashboard (BI Layer)
+- 🔄 Extract user data from the DummyJSON API
+- 🧹 Clean and transform raw data using Pandas
+- 🗄️ Load structured data into PostgreSQL
+- 📊 Perform SQL-based analytical (OLAP) queries
+- 📈 Visualize insights with Streamlit and Plotly
 
-## ⚙️ Tech Stack
+---
 
-🐍 Python 3.10+
-🗄️ PostgreSQL
-🧮 Pandas
-🔗 SQLAlchemy
-📊 Streamlit
-📈 Plotly
-📉 Seaborn
+# 🏗️ System Architecture
 
-## 📁 Project Structure
+```text
+             DummyJSON API
+                   │
+                   ▼
+       Extract Layer (Python Requests)
+                   │
+                   ▼
+      Transform Layer (Pandas Cleaning)
+                   │
+                   ▼
+       Load Layer (PostgreSQL Database)
+                   │
+                   ▼
+        SQL Analytics (OLAP Queries)
+                   │
+                   ▼
+      Streamlit Dashboard (BI Layer)
+```
+
+---
+
+# ⚙️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| 🐍 Python 3.10+ | ETL Development |
+| 🗄️ PostgreSQL | Relational Database |
+| 🧮 Pandas | Data Cleaning & Transformation |
+| 🔗 SQLAlchemy | Database ORM |
+| 🐘 psycopg2 | PostgreSQL Connector |
+| 📊 Streamlit | Interactive Dashboard |
+| 📈 Plotly | Interactive Charts |
+| 📉 Seaborn | Statistical Visualization |
+
+---
+
+# 📁 Project Structure
+
+```text
 User-Data-ETL-Analytics-Pipeline/
 │
-├── src/                      # ETL Pipeline
-│   ├── extract.py           # Fetch data from API
-│   ├── transform.py         # Data cleaning & feature engineering
-│   ├── load.py              # Load data into PostgreSQL
-│   ├── schema.py            # Database schema definition
-│   ├── database.py          # DB connection handler
-│   └── main.py              # ETL pipeline entry point
+├── src/
+│   ├── extract.py          # Fetch data from DummyJSON API
+│   ├── transform.py        # Data cleaning & feature engineering
+│   ├── load.py             # Load transformed data into PostgreSQL
+│   ├── schema.py           # Database schema definitions
+│   ├── database.py         # Database connection handler
+│   └── main.py             # ETL pipeline entry point
 │
-├── dashboard/               # Streamlit Dashboard
-│   ├── app.py              # Main Streamlit app
-│   ├── database.py         # DB connection
+├── dashboard/
+│   ├── app.py              # Streamlit application
+│   ├── database.py         # Dashboard database connection
 │   ├── queries.py          # SQL analytics queries
 │   ├── charts.py           # Plotly visualizations
 │   └── pages/              # Multi-page dashboard
 │
-├── sql/                     # SQL scripts
+├── sql/
 │   ├── create_tables.sql
 │   └── analytics_queries.sql
 │
-├── data/                   # Raw / processed data
+├── data/
+│   ├── raw/
+│   └── processed/
+│
 ├── requirements.txt
 └── README.md
+```
 
-## 🔄 ETL Pipeline
-1️⃣ Extract Layer
-Fetch user data from DummyJSON API
-Handle API errors & pagination
-Store raw JSON (optional for debugging)
+---
 
-2️⃣ Transform Layer
-Clean missing values
-Normalize nested JSON
-Feature engineering:
-Age groups
-Email domain extraction
-Address flattening
-BMI calculation
+# 🔄 ETL Pipeline
 
-3️⃣ Load Layer
+## 1️⃣ Extract
 
-Data is stored into PostgreSQL tables:
+- Retrieve user data from the DummyJSON API
+- Handle API pagination
+- Handle request failures and exceptions
+- Optionally store raw JSON for debugging
 
-users
-addresses
-companies
-bank
-crypto
-devices
-hair
+---
 
-## 🗄️ Database Schema
-users (id, name, gender, age, email, phone)
+## 2️⃣ Transform
 
-addresses (id, user_id, city, country)
+Data preprocessing includes:
 
-companies (id, user_id, company_name)
+- Removing missing values
+- Normalizing nested JSON objects
+- Flattening address information
+- Standardizing column names
+- Feature engineering
 
-bank (id, user_id, card_type, currency)
+### Engineered Features
 
-crypto (id, user_id, coin, wallet)
+- Age Groups
+- Email Domain
+- BMI Calculation
+- Flattened Address Information
 
-devices (id, user_id, device_type)
+---
 
-hair (id, user_id, color, type)
+## 3️⃣ Load
 
-## 📊 Analytics (SQL / OLAP)
-🔹 Aggregation Example
-SELECT gender, COUNT(*) AS total_users
+Load cleaned data into normalized PostgreSQL tables.
+
+### Database Tables
+
+- **users**
+- **addresses**
+- **companies**
+- **bank**
+- **crypto**
+- **devices**
+- **hair**
+
+---
+
+# 🗄️ Database Schema
+
+## users
+
+| Column | Type |
+|---------|------|
+| id | Integer |
+| name | Text |
+| gender | Text |
+| age | Integer |
+| email | Text |
+| phone | Text |
+
+---
+
+## addresses
+
+| Column | Type |
+|---------|------|
+| id | Integer |
+| user_id | Integer |
+| city | Text |
+| country | Text |
+
+---
+
+## companies
+
+| Column | Type |
+|---------|------|
+| id | Integer |
+| user_id | Integer |
+| company_name | Text |
+
+---
+
+## bank
+
+| Column | Type |
+|---------|------|
+| id | Integer |
+| user_id | Integer |
+| card_type | Text |
+| currency | Text |
+
+---
+
+## crypto
+
+| Column | Type |
+|---------|------|
+| id | Integer |
+| user_id | Integer |
+| coin | Text |
+| wallet | Text |
+
+---
+
+## devices
+
+| Column | Type |
+|---------|------|
+| id | Integer |
+| user_id | Integer |
+| device_type | Text |
+
+---
+
+## hair
+
+| Column | Type |
+|---------|------|
+| id | Integer |
+| user_id | Integer |
+| color | Text |
+| type | Text |
+
+---
+
+# 📊 SQL Analytics
+
+## Gender Distribution
+
+```sql
+SELECT gender,
+       COUNT(*) AS total_users
 FROM users
 GROUP BY gender;
-🔹 Age Segmentation
+```
+
+---
+
+## Age Segmentation
+
+```sql
 SELECT
-  CASE
+CASE
     WHEN age BETWEEN 18 AND 25 THEN '18-25'
     WHEN age BETWEEN 26 AND 35 THEN '26-35'
     ELSE '36+'
-  END AS age_group,
-  COUNT(*) AS total_users
+END AS age_group,
+COUNT(*) AS total_users
 FROM users
 GROUP BY age_group;
-🔹 JOIN Analysis
-SELECT u.name, a.city, c.company_name
+```
+
+---
+
+## User, Company & Address Analysis
+
+```sql
+SELECT
+u.name,
+a.city,
+c.company_name
 FROM users u
-JOIN addresses a ON u.id = a.user_id
-JOIN companies c ON u.id = c.user_id;
-🔹 Ranking Example
-SELECT name, age,
+JOIN addresses a
+ON u.id = a.user_id
+JOIN companies c
+ON u.id = c.user_id;
+```
+
+---
+
+## Age Ranking
+
+```sql
+SELECT
+name,
+age,
 RANK() OVER (ORDER BY age DESC) AS age_rank
 FROM users;
+```
 
-## 📈 Dashboard Features (Streamlit)
-📊 User distribution charts
-🌍 Country-wise analysis
-👥 Gender distribution
-🏢 Company insights
-📱 Device usage analysis
-📈 Age segmentation visuals
-🔎 Interactive filters
+---
 
-## ▶️ How to Run
-1. Clone Repository
+# 📈 Dashboard Features
+
+The Streamlit dashboard provides interactive business insights including:
+
+- 📊 User Distribution
+- 👥 Gender Analysis
+- 🌍 Country-wise Distribution
+- 🏢 Company Insights
+- 📱 Device Usage Analysis
+- 📈 Age Group Visualization
+- 🔎 Interactive Filters
+- 📉 Dynamic Plotly Charts
+
+---
+
+# ▶️ Getting Started
+
+## 1. Clone the Repository
+
+```bash
 git clone https://github.com/your-username/User-Data-ETL-Analytics-Pipeline.git
-cd User-Data-ETL-Analytics-Pipeline
-2. Install Dependencies
-pip install -r requirements.txt
-3. Create Database
-CREATE DATABASE user_etl_db;
-4. Run ETL Pipeline
-python src/main.py
-5. Launch Dashboard
-streamlit run dashboard/app.py
 
-## 📦 Requirements
+cd User-Data-ETL-Analytics-Pipeline
+```
+
+---
+
+## 2. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 3. Create PostgreSQL Database
+
+```sql
+CREATE DATABASE user_etl_db;
+```
+
+---
+
+## 4. Configure Database
+
+Update your PostgreSQL credentials inside:
+
+```text
+src/database.py
+dashboard/database.py
+```
+
+---
+
+## 5. Run the ETL Pipeline
+
+```bash
+python src/main.py
+```
+
+---
+
+## 6. Launch the Dashboard
+
+```bash
+streamlit run dashboard/app.py
+```
+
+---
+
+# 📦 Requirements
+
+```text
 pandas
 requests
 sqlalchemy
@@ -160,24 +352,71 @@ psycopg2
 streamlit
 plotly
 seaborn
+```
 
-## 📌 Key Learnings
-End-to-end ETL pipeline design
-API data ingestion & processing
-Relational database modeling
-SQL OLAP analytics
-Data visualization dashboards
-Real-world data engineering workflow
+Install using:
 
-## 🚀 Future Improvements
-Airflow orchestration ⏱️
-Docker containerization 🐳
-CI/CD pipeline (GitHub Actions)
-AWS deployment (RDS + EC2)
-Real-time streaming (Kafka)
-Role-based dashboard authentication
+```bash
+pip install -r requirements.txt
+```
 
-## 👨‍💻 Author
+---
 
-Shahzaib Sheikh
-Data Engineering & AI Enthusiast
+# 🎯 Learning Outcomes
+
+This project demonstrates:
+
+- End-to-End ETL Pipeline Development
+- REST API Data Ingestion
+- Data Cleaning & Transformation
+- PostgreSQL Database Modeling
+- SQL OLAP Analytics
+- Window Functions & Joins
+- Interactive BI Dashboard Development
+- Data Visualization with Plotly
+- Python Data Engineering Best Practices
+
+---
+
+# 🚀 Future Improvements
+
+Planned enhancements include:
+
+- ⏱️ Apache Airflow Orchestration
+- 🐳 Docker Containerization
+- ☁️ AWS Deployment (EC2 + RDS)
+- ⚡ Kafka Streaming Pipeline
+- 🔐 Role-Based Authentication
+- 📅 ETL Scheduling with Cron Jobs
+- 🔄 Incremental Data Loading
+- 🚀 GitHub Actions CI/CD Pipeline
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+If you would like to improve this project:
+
+1. Fork the repository
+2. Create a new feature branch
+3. Commit your changes
+4. Push the branch
+5. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 👨‍💻 Author
+
+**Shahzaib Sheikh**
+
+**Data Engineering | AI | Machine Learning Enthusiast**
+
+If you found this project helpful, consider giving it a ⭐ on GitHub.
