@@ -1,12 +1,5 @@
 📊 User Data ETL & Analytics Pipeline (PostgreSQL + Streamlit BI Dashboard)
 
-
-
-
-
-
-
-
 🚀 Project Overview
 
 This project is a complete end-to-end Data Engineering + Analytics system that demonstrates how raw API data can be transformed into a professional BI dashboard using:
