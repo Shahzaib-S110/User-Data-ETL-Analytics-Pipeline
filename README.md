@@ -426,7 +426,7 @@ This project is licensed under the **MIT License**.
 
 # 👨‍💻 Author
 
-**Shahzaib Sheikh**
+**Shahzaib Saleem**
 
 **Data Engineering | AI | Machine Learning Enthusiast**
 
